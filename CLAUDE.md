@@ -11,7 +11,7 @@ task-board — タスク管理ボードアプリケーション。
 ## 技術スタック
 
 - React 18 + Vite 5(JavaScript / JSX)
-- 状態はメモリ上のみで保持(永続化なし)
+- タスクはブラウザの localStorage(キー: `task-board.tasks`)に保存
 
 ## ディレクトリ構成
 
