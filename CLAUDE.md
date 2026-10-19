@@ -36,6 +36,12 @@ npm run build
 # (未導入)
 ```
 
+## デプロイ(GitHub Pages)
+
+- 公開 URL: https://ryoppip.github.io/task-board/
+- `main` へのプッシュで `.github/workflows/deploy.yml` が自動でビルド・デプロイする。
+- `vite.config.js` の `base` はビルド時のみ `/task-board/`。リポジトリ名を変えた場合はここも変更する。
+
 ## Git 運用ルール
 
 ### 基本方針
