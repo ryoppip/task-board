@@ -10,19 +10,30 @@ task-board — タスク管理ボードアプリケーション。
 
 ## 技術スタック
 
-- (未定)
+- React 18 + Vite 5(JavaScript / JSX)
+- 状態はメモリ上のみで保持(永続化なし)
+
+## ディレクトリ構成
+
+- `index.html` — エントリ HTML
+- `src/main.jsx` — React のマウント
+- `src/App.jsx` — タスクボード本体(追加・完了切替・削除)
+- `src/App.css` — スタイル
 
 ## 開発コマンド
 
 ```bash
 # 依存関係のインストール
-# (未定)
+npm install
 
-# 開発サーバーの起動
-# (未定)
+# 開発サーバーの起動(http://localhost:5173)
+npm run dev
+
+# 本番ビルド(プッシュ前に通ることを確認する)
+npm run build
 
 # テストの実行
-# (未定)
+# (未導入)
 ```
 
 ## Git 運用ルール
