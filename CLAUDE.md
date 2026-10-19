@@ -6,12 +6,20 @@
 
 task-board — タスク管理ボードアプリケーション。
 
-<!-- 技術スタック・ディレクトリ構成・起動方法が決まったら、以下を追記してください -->
-
 ## 技術スタック
 
-- React 18 + Vite 5(JavaScript / JSX)
-- タスクはブラウザの localStorage(キー: `task-board.tasks`)に保存
+| 分類 | 使用技術 |
+| --- | --- |
+| 言語 | JavaScript(ES Modules)/ JSX ※TypeScript は未使用 |
+| UI ライブラリ | React 18.3(関数コンポーネント + Hooks) |
+| ビルドツール | Vite 5.4 + @vitejs/plugin-react 4 |
+| スタイル | 素の CSS(`src/App.css`)。CSS フレームワーク・CSS-in-JS は未使用 |
+| 状態管理 | React の `useState` / `useEffect` のみ(外部ライブラリなし) |
+| データ保存 | ブラウザの localStorage(キー: `task-board.tasks`、JSON 配列) |
+| ホスティング | GitHub Pages(GitHub Actions で自動デプロイ) |
+| CI の Node.js | 22 |
+
+- タスクのデータ形式: `{ id: string, title: string, done: boolean }`(`id` は `crypto.randomUUID()` で生成)
 
 ## ディレクトリ構成
 
@@ -36,9 +44,24 @@ npm run build
 # (未導入)
 ```
 
-## デプロイ(GitHub Pages)
+## コンポーネントの命名規約
 
-- 公開 URL: https://ryoppip.github.io/task-board/
+現在のコード(`src/App.jsx`)に合わせた規約です。新しいコードもこれに従ってください。
+
+- **コンポーネント**: PascalCase の関数コンポーネント(例: `App`, `TaskItem`)。クラスコンポーネントは使わない。
+- **ファイル**: コンポーネント名と同じ PascalCase + `.jsx`(例: `TaskItem.jsx`)。1ファイル1コンポーネントで `export default` する。
+- **配置**: `App` 以外のコンポーネントを追加する場合は `src/components/` に置く。
+- **CSS クラス名**: kebab-case(例: `add-form`, `task-list`)。状態は修飾クラスで表す(例: `task done`)。
+- **state**: `[名詞, set名詞]` の組(例: `[tasks, setTasks]`, `[text, setText]`)。
+- **イベントハンドラ**: 「動詞 + 名詞」の camelCase(例: `addTask`, `toggleTask`, `deleteTask`)。子コンポーネントへ props で渡す場合は `onAdd`, `onToggle`, `onDelete` のように `on` + 動詞にする。
+- **ヘルパー関数**: 動詞で始まる camelCase(例: `loadTasks`)。
+- **定数**: UPPER_SNAKE_CASE(例: `STORAGE_KEY`)。
+- **UI の文言**: 日本語。
+
+## デプロイ先
+
+https://ryoppip.github.io/task-board/
+
 - `main` へのプッシュで `.github/workflows/deploy.yml` が自動でビルド・デプロイする。
 - `vite.config.js` の `base` はビルド時のみ `/task-board/`。リポジトリ名を変えた場合はここも変更する。
 
